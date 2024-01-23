@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+.container-fluid{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(145623-wallpaper-4k-abstract-minimal-blur-4k-4k-wallpaper-abstract.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+.formcontainer{
+    background-color: rgba(0, 0, 0, 0.21);
+    backdrop-filter: blur(10px);
+    background-size: cover;
+    background-position: center;
+    max-width: 300px;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+}
+    
