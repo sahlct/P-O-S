@@ -3,7 +3,8 @@ let customor = [];
 let productname, productprice, customorname;
 let productobj;
 let count = 1;
-let quantity =1;
+// let quantity =1;
+let orderedlist=[];
 
 document.getElementById("myform").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -54,24 +55,38 @@ document.getElementById("myformsecond").addEventListener("submit", function (eve
 function order(id) {
    let selectrow = document.getElementById(id);
    let secondbody = document.getElementById("secondtablebody");
+   secondbody.innerHTML = ''
    console.log(selectrow);
    let latestproduct = product.filter(function (value){
     return value.id == id
    })
+
+//    let neworderedlist = orderedlist.filter(function (value){
+//     return value.id == id
+//    })
+//    console.log("new orderd list is : ",neworderedlist);
+
+   let entry = {
+    id: latestproduct[0].id,
+    name:latestproduct[0].name,
+    price:latestproduct[0].price,
+    quantity: 1,
+    amount: latestproduct[0].price
+   }
+   orderedlist.push(entry)
    
-   console.log(latestproduct);
-   let secondrow = document.createElement("tr")
+
+for(let i=0; i<orderedlist.length; i++){
+    let secondrow = document.createElement("tr")
    secondrow.className = "table-primary"
    secondrow.id = id
-
-   let amount = quantity*latestproduct[0].price
    secondrow.innerHTML = `
-   <td scope="row">${latestproduct[0].name}</td>
-   <td>${latestproduct[0].price}</td>
-   <td>${quantity}</td>
-   <td>${amount}</td>
+   <td scope="row">${orderedlist[i].name}</td>
+   <td>${orderedlist[i].price}</td>
+   <td>${orderedlist[i].quantity}</td>
+   <td>${orderedlist[i].amount}</td>
    <td><button>Delete</button></td>
    `
-   quantity++
    secondbody.appendChild(secondrow)
+}  
 }
