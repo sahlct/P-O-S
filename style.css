@@ -16,6 +16,7 @@ body{
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 20px;
 }
 .formcontainer{
     background-color: rgba(0, 0, 0, 0.20);
@@ -40,4 +41,7 @@ body{
 }
 #amountshow{
     background-color: white;
+}
+.table-responsive{
+  width: 500px;
 }   

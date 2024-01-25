@@ -28,18 +28,17 @@
             <form action="" id="myformsecond">
                 <div class="input-group mb-3">
                     <input id="customorname" type="text" class="form-control" placeholder="Customor Name"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                        aria-label="Recipient's username" aria-describedby="button-addon2" required>
                     <button class="btn btn-primary" type="submit" id="button-addon2">Add
                         Customor</button>
                 </div>
             </form>
             <!-- customor-list  -->
             <div class="input-group mb-3 cstmr_list">
-                <select id="optionname" class="form-select" id="inputGroupSelect02">
+                <select id="optionname" class="form-select">
                     <option selected>Choose Customor</option>
-                    <option></option>
                 </select>
-                <label class="input-group-text" for="inputGroupSelect02">Options</label>
+                <label class="input-group-text" for="optionname">Options</label>
             </div>
         </div>
         <!-- table  -->
@@ -52,12 +51,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody class="table-group-divider">
-                    <tr class="table-primary">
-                        <td scope="row">Item</td>
-                        <td>Item</td>
-                        <td><button>Order</button></td>
-                    </tr>
+                <tbody id="tablebody" class="table-group-divider">
                 </tbody>
             </table>
         </div>
@@ -73,14 +67,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody class="table-group-divider">
-                    <tr class="table-primary">
-                        <td scope="row">Item</td>
-                        <td>Item</td>
-                        <td>Item</td>
-                        <td>Item</td>
-                        <td>Item</td>
-                    </tr>
+                <tbody id="secondtablebody" class="table-group-divider">
+                    <!-- <tr class="table-primary">
+                    </tr> -->
                 </tbody>
             </table>
             <div id="amountshow">amount</div>
