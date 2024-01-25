@@ -5,7 +5,8 @@
 .container-fluid{
     width: 100%;
     min-height: 100vh;
-    background-image: url(145623-wallpaper-4k-abstract-minimal-blur-4k-4k-wallpaper-abstract.jpg);
+    background-image: url(vecteezy_purple-minimalist-wallpaper-high-quality-4k-hdr_30698588.jpg);
+    backdrop-filter: blur(10px);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
