@@ -2,19 +2,23 @@
     margin: 0;
     box-sizing: border-box;
 }
-.container-fluid{
-    width: 100%;
-    min-height: 100vh;
+body{
     background-image: url(vecteezy_purple-minimalist-wallpaper-high-quality-4k-hdr_30698588.jpg);
-    backdrop-filter: blur(10px);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.container-fluid{
+    width: 100%;
+    min-height: 100vh;
+    backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .formcontainer{
-    background-color: rgba(0, 0, 0, 0.21);
+    background-color: rgba(0, 0, 0, 0.20);
     backdrop-filter: blur(10px);
     background-size: cover;
     background-position: center;
@@ -26,4 +30,14 @@
     padding: 10px;
     border-radius: 10px;
 }
-    
+.cstmr_list{
+    margin-top: 20px;
+}
+.second{
+    width: 1000px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.2);
+}
+#amountshow{
+    background-color: white;
+}   
