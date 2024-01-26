@@ -4,7 +4,10 @@ let productname, productprice, customorname;
 let productobj;
 let count = 1;
 // let quantity =1;
-let orderedlist=[];
+let orderedlist = [];
+let j = 0;
+let result = 0;
+let values = 1;
 
 document.getElementById("myform").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -53,40 +56,61 @@ document.getElementById("myformsecond").addEventListener("submit", function (eve
 
 
 function order(id) {
-   let selectrow = document.getElementById(id);
-   let secondbody = document.getElementById("secondtablebody");
-   secondbody.innerHTML = ''
-   console.log(selectrow);
-   let latestproduct = product.filter(function (value){
-    return value.id == id
-   })
+    let selectrow = document.getElementById(id);
+    let secondbody = document.getElementById("secondtablebody");
+    let index;
+    secondbody.innerHTML = ''
+    console.log(selectrow);
+    let latestproduct = product.filter(function (value) {
+        return value.id == id
+    })
+    console.log("orderd list is :", orderedlist);
 
-//    let neworderedlist = orderedlist.filter(function (value){
-//     return value.id == id
-//    })
-//    console.log("new orderd list is : ",neworderedlist);
+    let neworderedlist = orderedlist.filter(function (value, position) {
+        if (value.id == id) {
+            index = position
+            return true
+        }
+    })
 
-   let entry = {
-    id: latestproduct[0].id,
-    name:latestproduct[0].name,
-    price:latestproduct[0].price,
-    quantity: 1,
-    amount: latestproduct[0].price
-   }
-   orderedlist.push(entry)
-   
+    if (neworderedlist.length == 0) {
+        let entry = {
+            id: latestproduct[0].id,
+            name: latestproduct[0].name,
+            price: latestproduct[0].price,
+            quantity: 1,
+            amount: latestproduct[0].price * 1
+        }
+        orderedlist.push(entry)
 
-for(let i=0; i<orderedlist.length; i++){
-    let secondrow = document.createElement("tr")
-   secondrow.className = "table-primary"
-   secondrow.id = id
-   secondrow.innerHTML = `
-   <td scope="row">${orderedlist[i].name}</td>
-   <td>${orderedlist[i].price}</td>
-   <td>${orderedlist[i].quantity}</td>
-   <td>${orderedlist[i].amount}</td>
-   <td><button>Delete</button></td>
-   `
-   secondbody.appendChild(secondrow)
-}  
+
+
+    } else {
+        orderedlist[index].quantity += 1
+        orderedlist[index].amount = orderedlist[index].quantity * latestproduct[0].price
+    }
+
+    for (let i = 0; i < orderedlist.length; i++) {
+        let secondrow = document.createElement("tr")
+        secondrow.className = "table-primary"
+        secondrow.id = id
+        secondrow.innerHTML = `
+        <td scope="row">${orderedlist[i].name}</td>
+        <td>${orderedlist[i].price}</td>
+        <td>${orderedlist[i].quantity}</td>
+        <td>${orderedlist[i].amount}</td>
+        <td><button>Delete</button></td>
+`
+        secondbody.appendChild(secondrow)
+        
+    }
+    result= 0
+
+    for(let m=0; m<orderedlist.length; m++){
+        result = orderedlist[m].amount + result
+    }
+    document.getElementById("amountshow").innerHTML = `
+    TOTAL AMOUNT OF PURCHASE : ${result}
+    `
+
 }
