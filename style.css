@@ -50,10 +50,13 @@ body {
     background-color: white;
 }
 
-.table-responsive {
-    width: 600px;
+#table-responsive {
+    width: 300px;
+    display: none;
 }
-
+#table-responsive-second{
+    display: none;
+}
 .amountbtn {
     display: flex;
     flex-direction: column;
@@ -105,12 +108,12 @@ th {
     color: #fff;
 }
 
-footer {
+.footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 1em 0;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
     width: 100%;
 }

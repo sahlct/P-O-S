@@ -11,6 +11,7 @@ let values = 1;
 
 document.getElementById("myform").addEventListener("submit", function (event) {
     event.preventDefault();
+    document.getElementById("table-responsive").style.display = "flex"
     let row = document.getElementById("tablebody");
     row.innerHTML = ''
     productname = document.getElementById("productname").value;
@@ -48,6 +49,7 @@ document.getElementById("myformsecond").addEventListener("submit", function (eve
     for (let i = 0; i < customor.length; i++) {
         let newoption = document.createElement("option")
         newoption.id = `option`
+        // newoption.value = ''
         newoption.innerHTML = customor[i]
         container.appendChild(newoption)
     }
@@ -57,6 +59,7 @@ document.getElementById("myformsecond").addEventListener("submit", function (eve
 
 function order(id) {
     let selectrow = document.getElementById(id);
+    document.getElementById("table-responsive-second").style.display ="block"
     let secondbody = document.getElementById("secondtablebody");
     let index;
     secondbody.innerHTML = ''
@@ -102,15 +105,51 @@ function order(id) {
         <td><button>Delete</button></td>
 `
         secondbody.appendChild(secondrow)
-        
-    }
-    result= 0
 
-    for(let m=0; m<orderedlist.length; m++){
+    }
+    result = 0
+
+    for (let m = 0; m < orderedlist.length; m++) {
         result = orderedlist[m].amount + result
     }
     document.getElementById("amountshow").innerHTML = `
     TOTAL AMOUNT OF PURCHASE : ${result}
     `
 
+}
+
+function showbill() {
+    let billname = document.getElementById("optionname").value
+    if(billname == ''){
+        let alertModal = document.getElementById("alertmodaal");
+        alertModal.innerHTML =`
+        <div class="alert alert-info" role="alert">
+    This is a simple Bootstrap alert box.
+  </div>
+        `
+        document.getElementById("exampleModal").style.display ='none'
+    }else{
+        document.getElementById("exampleModal").innerHTML =`
+        `
+    let billtbody = document.getElementById("billbody");
+    billtbody.innerHTML = ''
+    for (let l = 0; l < orderedlist.length; l++) {
+        let billrow = document.createElement("tr")
+        billrow.id = "newbillrow"
+        billrow.innerHTML = `
+            <td>${l+1}</td>
+            <td>${orderedlist[l].name}</td>
+            <td>${orderedlist[l].quantity}</td>
+            <td>${orderedlist[l].price}</td>
+            <td>${orderedlist[l].amount}</td>
+    `
+    billtbody.appendChild(billrow);
+    }
+    document.getElementById("totalamount").innerHTML = `
+    ${result}
+    `
+   
+    // console.log(billname);
+    document.getElementById("name").innerHTML = `Name : ${billname}`
+}
 }
