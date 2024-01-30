@@ -89,6 +89,7 @@ table{
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    /* table-layout: auto; */
 }
 
 table,
@@ -116,4 +117,9 @@ th {
     /* position: fixed;
     bottom: 0; */
     width: 100%;
+}
+.quantityinput{
+    border: none;
+    background-color: transparent;
+    max-width: 100%;
 }
