@@ -60,7 +60,8 @@ body {
     height: 300px;
     min-width: 270px;
     border-radius: 10px;
-    border: 2px solid #006da4;
+    margin: 25px;
+    /* border: 2px solid #006da4; */
 }
 
 #tablex .table {
@@ -73,13 +74,13 @@ body {
 }
 
 #table-responsive-second {
+    margin: 25px;
     display: none;
     width: 1100px;
     min-width: 270px;
     background-color: white;
     border-radius: 10px;
-    border: 2px solid black;
-    box-shadow: 2px 3px 30px 5px;
+    box-shadow: 5px 5px 20px 5px;
 }
 
 .amountbtn {
@@ -236,15 +237,7 @@ th {
     transform: scalex(1.2);
     letter-spacing: 1px;
 }
-#tablex button,#table-responsive-second button{
-    background-color: #006da4;
-    color: white;
-    border-radius: 5px;
-}
-/* #btncomplete{
-    margin-left: 55%;
-    display: none;
-} */
+
 @media screen and (max-width: 599px) {
 
     .right-side,

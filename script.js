@@ -34,7 +34,7 @@ document.getElementById("myform").addEventListener("submit", function (event) {
         newrow.innerHTML = `
             <td scope="row">${product[i].name}</td>
             <td>${product[i].price}</td>
-            <td><button id="${product[i].id}" onclick="order('${product[i].id}')">Order</button></td>
+            <td><button id="${product[i].id}" class="btn btn-success" onclick="order('${product[i].id}')">Order</button></td>
         `
         row.appendChild(newrow)
     }
@@ -108,7 +108,7 @@ function order(id) {
         <td>${orderedlist[i].price}</td>
         <td><input type="number" id='input${orderedlist[i].id}' class="quantityinput" value="${orderedlist[i].quantity}" onchange="quantitychange('${orderedlist[i].id}')"></td>
         <td>${orderedlist[i].amount}</td>
-        <td><button type="button" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
+        <td><button type="button" class="btn btn-danger" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
 `
         
         secondbody.appendChild(secondrow)
