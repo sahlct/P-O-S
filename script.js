@@ -14,7 +14,7 @@ let index;
 
 document.getElementById("myform").addEventListener("submit", function (event) {
     event.preventDefault();
-    document.getElementById("table-responsive").style.display = "flex"
+    document.getElementById("tablex").style.display = "flex"
     let row = document.getElementById("tablebody");
     row.innerHTML = ''
     productname = document.getElementById("productname").value;
