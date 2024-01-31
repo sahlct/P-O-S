@@ -63,6 +63,8 @@ document.getElementById("myformsecond").addEventListener("submit", function (eve
 function order(id) {
     let selectrow = document.getElementById(id);
     document.getElementById("table-responsive-second").style.display ="block"
+    document.getElementById("amountshow").style.display ="block"
+    // document.getElementById("btncomplete").style.display ="block"
     secondbody = document.getElementById("secondtablebody");
     let index;
     secondbody.innerHTML = ''
