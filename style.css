@@ -93,8 +93,8 @@ body {
 
 #amountshow {
     padding-right: 20px;
-    /* width: 1100px;
-    display: none; */
+    font-size: 15px;
+    font-weight: 800;
 }
 
 /* ---------- */
@@ -237,6 +237,10 @@ th {
     transform: scalex(1.2);
     letter-spacing: 1px;
 }
+#totalamount{
+    font-size: 15px;
+    font-weight: 800;
+}
 
 @media screen and (max-width: 599px) {
 
@@ -250,5 +254,8 @@ th {
         /* max-width: 300px; */
         font-size: 10px;
         font-weight: 500;
+    }
+    main{
+        overflow: scroll;
     }
 }
