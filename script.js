@@ -62,8 +62,8 @@ document.getElementById("myformsecond").addEventListener("submit", function (eve
 
 function order(id) {
     let selectrow = document.getElementById(id);
-    document.getElementById("table-responsive-second").style.display ="block"
-    document.getElementById("amountshow").style.display ="block"
+    document.getElementById("table-responsive-second").style.display = "block"
+    document.getElementById("amountshow").style.display = "block"
     // document.getElementById("btncomplete").style.display ="block"
     secondbody = document.getElementById("secondtablebody");
     let index;
@@ -110,7 +110,7 @@ function order(id) {
         <td>${orderedlist[i].amount}</td>
         <td><button type="button" class="btn btn-danger" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
 `
-        
+
         secondbody.appendChild(secondrow)
 
     }
@@ -127,44 +127,44 @@ function order(id) {
 
 function showbill() {
     billname = document.getElementById("optionname").value
-    console.log("billname value",billname);
-    if(billname === ''){
-        document.getElementById("modal-body").style.display ='none'
+    console.log("billname value", billname);
+    if (billname === '') {
+        document.getElementById("modal-body").style.display = 'none'
         document.getElementById("modal-header").innerHTML = `
         <h4>Please Choose a Customor Fiirst....!!</h4>
         `
-    }else{
-        document.getElementById("modal-body").style.display ='block'
-      document.getElementById("modal-header").innerHTML =''  
-    let billtbody = document.getElementById("billbody");
-    billtbody.innerHTML = ''
-    for (let l = 0; l < orderedlist.length; l++) {
-        let billrow = document.createElement("tr")
-        billrow.id = "newbillrow"
-        billrow.innerHTML = `
-            <td>${l+1}</td>
+    } else {
+        document.getElementById("modal-body").style.display = 'block'
+        document.getElementById("modal-header").innerHTML = ''
+        let billtbody = document.getElementById("billbody");
+        billtbody.innerHTML = ''
+        for (let l = 0; l < orderedlist.length; l++) {
+            let billrow = document.createElement("tr")
+            billrow.id = "newbillrow"
+            billrow.innerHTML = `
+            <td>${l + 1}</td>
             <td>${orderedlist[l].name}</td>
             <td>${orderedlist[l].quantity}</td>
             <td>${orderedlist[l].price}</td>
             <td>${orderedlist[l].amount}</td>
     `
-    billtbody.appendChild(billrow);
-    }
-    document.getElementById("totalamount").innerHTML = `
+            billtbody.appendChild(billrow);
+        }
+        document.getElementById("totalamount").innerHTML = `
     ${result}
     `
-    document.getElementById("name").innerHTML = `Name : ${billname}`
-}
+        document.getElementById("name").innerHTML = `Name : ${billname}`
+    }
 }
 
-function orderlist_delete(id){
+function orderlist_delete(id) {
     let deleteid = id
     console.log(id);
-    orderedlist = orderedlist.filter(function (value){
+    orderedlist = orderedlist.filter(function (value) {
         return value.id !== deleteid
     })
     secondbody.innerHTML = ''
-    console.log("orderedlist : ",orderedlist);
+    console.log("orderedlist : ", orderedlist);
     for (let i = 0; i < orderedlist.length; i++) {
         let secondrow = document.createElement("tr")
         secondrow.className = "table-primary"
@@ -175,9 +175,9 @@ function orderlist_delete(id){
         <td>${orderedlist[i].price}</td>
         <td>${orderedlist[i].quantity}</td>
         <td>${orderedlist[i].amount}</td>
-        <td><button type="button" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
+        <td><button type="button" class="btn btn-danger" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
 `
-        
+
         secondbody.appendChild(secondrow)
 
     }
@@ -191,43 +191,78 @@ function orderlist_delete(id){
     `
 }
 
-function quantitychange (qid){
+function quantitychange(qid) {
     let inputvalue = document.getElementById(`input${qid}`)
-    if(inputvalue.value <= 0){
+    if (inputvalue.value <= 0) {
         inputvalue.value = 1
-    }else {
-         let currentrow = orderedlist.filter(function (value,index1){
-        if(value.id === qid){
-            index = index1
-        }
-    })
-    orderedlist[index].quantity = parseInt(inputvalue.value)
-    orderedlist[index].amount = orderedlist[index].quantity * orderedlist[index].price
-    secondbody.innerHTML = ''
-    for (let i = 0; i < orderedlist.length; i++) {
-        let secondrow = document.createElement("tr")
-        secondrow.className = "table-primary"
-        // let currentid = orderedlist[i].id
-        secondrow.id = `${product[i].id}`
-        secondrow.innerHTML = `
+
+
+        let currentrow = orderedlist.filter(function (value, index1) {
+            if (value.id === qid) {
+                index = index1
+            }
+        })
+        orderedlist[index].quantity = parseInt(inputvalue.value)
+        orderedlist[index].amount = orderedlist[index].quantity * orderedlist[index].price
+        secondbody.innerHTML = ''
+        for (let i = 0; i < orderedlist.length; i++) {
+            let secondrow = document.createElement("tr")
+            secondrow.className = "table-primary"
+            // let currentid = orderedlist[i].id
+            secondrow.id = `${product[i].id}`
+            secondrow.innerHTML = `
         <td scope="row">${orderedlist[i].name}</td>
         <td>${orderedlist[i].price}</td>
         <td><input type="number" id='input${orderedlist[i].id}' class="quantityinput" value="${orderedlist[i].quantity}" onchange="quantitychange('${orderedlist[i].id}')"></td>
         <td>${orderedlist[i].amount}</td>
-        <td><button type="button" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
+        <td><button type="button" class="btn btn-danger" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
 `
+
+            secondbody.appendChild(secondrow)
+
+        }
+        result = 0
+
+        for (let m = 0; m < orderedlist.length; m++) {
+            result = orderedlist[m].amount + result
+        }
+        document.getElementById("amountshow").innerHTML = `
+    TOTAL AMOUNT OF PURCHASE : ${result}
+    `
         
-        secondbody.appendChild(secondrow)
+    } else {
+        let currentrow = orderedlist.filter(function (value, index1) {
+            if (value.id === qid) {
+                index = index1
+            }
+        })
+        orderedlist[index].quantity = parseInt(inputvalue.value)
+        orderedlist[index].amount = orderedlist[index].quantity * orderedlist[index].price
+        secondbody.innerHTML = ''
+        for (let i = 0; i < orderedlist.length; i++) {
+            let secondrow = document.createElement("tr")
+            secondrow.className = "table-primary"
+            // let currentid = orderedlist[i].id
+            secondrow.id = `${product[i].id}`
+            secondrow.innerHTML = `
+        <td scope="row">${orderedlist[i].name}</td>
+        <td>${orderedlist[i].price}</td>
+        <td><input type="number" id='input${orderedlist[i].id}' class="quantityinput" value="${orderedlist[i].quantity}" onchange="quantitychange('${orderedlist[i].id}')"></td>
+        <td>${orderedlist[i].amount}</td>
+        <td><button type="button" class="btn btn-danger" onclick="orderlist_delete('${orderedlist[i].id}')">Delete</button></td>
+`
 
-    }
-    result = 0
+            secondbody.appendChild(secondrow)
 
-    for (let m = 0; m < orderedlist.length; m++) {
-        result = orderedlist[m].amount + result
-    }
-    document.getElementById("amountshow").innerHTML = `
+        }
+        result = 0
+
+        for (let m = 0; m < orderedlist.length; m++) {
+            result = orderedlist[m].amount + result
+        }
+        document.getElementById("amountshow").innerHTML = `
     TOTAL AMOUNT OF PURCHASE : ${result}
     `
     }
-   
+
 }
