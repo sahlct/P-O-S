@@ -31,10 +31,17 @@ body {
     max-width: 300px;
     min-height: 300px;
     display: flex;
+    /* color: white; */
     justify-content: center;
     flex-direction: column;
     padding: 10px;
     border-radius: 10px;
+}
+.formcontainer input, #optionname, #optionsDiv{
+    background: gainsboro; 
+}
+.formcontainer input::placeholder{
+    color: black;
 }
 
 .cstmr_list {

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+  padding: 1rem;
+}
+canvas {
+  width: 700px;
+  height: 425px;
+  margin: 0 1rem 0 0;
+  border-radius: 10px;
+}
+
+button {
+    background: linear-gradient(45deg, #ff6d1b, #e0417f);
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+    line-height: 1.5rem;
+    will-change: transform, filter;
+    margin: 0 0 1rem 0;
+    transition: all 0.15s ease-out;
+    cursor: pointer;
+    border-radius: 100px;
+    display: block;
+    display: block;
+    border: none;
+    color: white;
+    font-family: Inter, sans-serif;
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3));
+    font-variation-settings: 'wght' 600;
+    perspective-origin: 0 0;
+    letter-spacing: 0;
+}
+
+button:hover {
+  transform: scale(1.04);
+}
+</style>
+<body>
+    <button>Download Canvas</button>
+
+<div class="modal-dialog">
+    <div class="modal-content"  id="canvas">
+        <div class="modal-header" id="modal-header"></div>
+        <div class="modal-body" id="modal-body" style="display: block;">
+            <header>
+                <h1>Invoice</h1>
+            </header>
+            <main>
+                <div id="name">Name : favas</div>
+                <table id="billtable">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="billbody">
+                        <tr id="newbillrow">
+                            <td>1</td>
+                            <td>boat airdopes</td>
+                            <td>1</td>
+                            <td>900</td>
+                            <td>900</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" style="text-align: right; font-weight: bold;">Total</td>
+                            <td id="totalamount">900</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </main>
+            <div class="footer">
+                <p>© 2024 JerJeer SuperMarket. All rights reserved.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button  id="download">Download as Image</button>
+            <button onclick="downloadDivAsPDF()">Download as PDF</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+    </div>
+</div>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+    let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+
+canvas.width = 1300;
+canvas.height = 850;
+
+const wrapText = function(ctx, text, x, y, maxWidth, lineHeight) {
+    var words = text.split(' ');
+    var line = '';
+    let testLine = '';
+    let wordArray = [];
+    let totalLineHeight = 0;
+    for(var n = 0; n < words.length; n++) {
+        testLine += `${words[n]} `;
+        var metrics = ctx.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+            wordArray.push([line, x, y]);
+            y += lineHeight;
+            totalLineHeight += lineHeight;
+            line = `${words[n]} `;
+            testLine = `${words[n]} `;
+        }
+        else {
+            line += `${words[n]} `;
+        }
+        if(n === words.length - 1) {
+            wordArray.push([line, x, y]);
+        }
+    }
+    return [ wordArray, totalLineHeight ];
+}
+
+// Add gradient
+let grd = ctx.createLinearGradient(0, 853, 1352, 0);
+grd.addColorStop(0, '#00a0ff');
+grd.addColorStop(1, '#12cba6');
+ctx.fillStyle = grd;
+ctx.fillRect(0, 0, 1342, 853);
+
+// Write text
+ctx.fillStyle = 'white';
+ctx.font = '95px Inter';
+ctx.fillText('👍', 85, 700);
+
+// More text
+ctx.font = '700 95px Inter';
+ctx.fillStyle = 'white';
+let wrappedText = wrapText(ctx, "Download this Canvas", 85, 753, 1200, 100);
+wrappedText[0].forEach(function(item) {
+    ctx.fillText(item[0], item[1], item[2] - wrappedText[1] - (200)); // 200 is height of emoji
+})
+
+// And more
+ctx.font = '200 50px Inter';
+ctx.fillStyle = 'rgba(255,255,255,0.8)';
+ctx.fillText("HTML", 85, 553 - wrappedText[1] - 100); // 853 - 200 for emoji, -100 for line height of 1
+
+document.getElementById('download').addEventListener('click', function(e) {
+  let canvasUrl = canvas.toDataURL("image/jpeg", 0.5);
+  console.log(canvasUrl);
+  const createEl = document.createElement('a');
+  createEl.href = canvasUrl;
+  createEl.download = "download-this-canvas";
+  createEl.click();
+  createEl.remove();
+});
+</script>
+</body>
+</html>
